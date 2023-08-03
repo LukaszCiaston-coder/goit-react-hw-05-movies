@@ -6,7 +6,7 @@ import { useDarkMode } from '../Utils/DarkMode';
 const Reviews = () => {
   const { movieId } = useParams();
   const [reviews, setReviews] = useState([]);
-  const darkMode = useDarkMode();
+  const { darkMode } = useDarkMode();
 
   useEffect(() => {
     const fetchMovieReviews = async () => {
@@ -36,7 +36,7 @@ const Reviews = () => {
           </li>
         ))}
       </ul>
-      <Link to={`/movies/${movieId}`} className="back-link">
+      <Link to={`/movies/${movieId}`} className="btn">
         Back to Movie Details
       </Link>
     </div>

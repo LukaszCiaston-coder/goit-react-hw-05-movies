@@ -8,7 +8,7 @@ const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/w200'; // Base URL for actor 
 const Cast = () => {
   const { movieId } = useParams();
   const [cast, setCast] = useState([]);
-  const darkMode = useDarkMode();
+  const { darkMode } = useDarkMode();
 
   useEffect(() => {
     const fetchMovieCast = async () => {
@@ -29,7 +29,7 @@ const Cast = () => {
 
   return (
     <div className={`cast-container ${darkMode ? 'dark-mode' : ''}`}>
-      <h2 className="cast-title">Cast</h2>
+      <h2>Cast</h2>
       <ul className="cast-list">
         {cast.map(actor => (
           <li className="cast-item" key={actor.id}>
@@ -42,7 +42,7 @@ const Cast = () => {
           </li>
         ))}
       </ul>
-      <Link to={`/movies/${movieId}`} className="back-link">
+      <Link to={`/movies/${movieId}`} className="btn">
         Back to Movie Details
       </Link>
     </div>

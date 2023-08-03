@@ -6,7 +6,7 @@ import { useDarkMode } from '../Utils/DarkMode';
 const Movies = () => {
   const [searchKeyword, setSearchKeyword] = useState('');
   const [searchResults, setSearchResults] = useState([]);
-  const darkMode = useDarkMode();
+  const { darkMode } = useDarkMode();
 
   const handleSearchInputChange = event => {
     setSearchKeyword(event.target.value);
@@ -42,7 +42,7 @@ const Movies = () => {
         onChange={handleSearchInputChange}
       />
       <button onClick={handleSearch}>Search</button>
-      <ul>
+      <ul className="movies-list">
         {searchResults.map(movie => (
           <li key={movie.id}>
             <Link className="movie-items" to={`/movies/${movie.id}`}>
@@ -52,7 +52,7 @@ const Movies = () => {
                 className="movie-thumbnail"
               />
               <span className="movies-title">
-                {truncateTitle(movie.title, 20)}
+                {truncateTitle(movie.title, 12)}
               </span>
             </Link>
           </li>
