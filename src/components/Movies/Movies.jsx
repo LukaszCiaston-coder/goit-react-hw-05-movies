@@ -51,7 +51,7 @@ const Movies = () => {
                 alt={movie.title}
                 className="movie-thumbnail"
               />
-              <span className="movie-title">
+              <span className="movies-title">
                 {truncateTitle(movie.title, 20)}
               </span>
             </Link>
