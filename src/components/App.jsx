@@ -13,7 +13,7 @@ export const App = () => {
   const { darkMode, toggleDarkMode } = useDarkMode();
 
   return (
-    <Router>
+    <Router basename="goit-react-hw-05-movies">
       <div className={`container ${darkMode ? 'dark-mode' : ''}`}>
         <nav>
           <ul className="menu">
