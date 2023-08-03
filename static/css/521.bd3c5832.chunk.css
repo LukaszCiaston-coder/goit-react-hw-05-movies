@@ -1,0 +1,2 @@
+.cast-container{padding:20px}.cast-container h2{font-size:24px;margin-bottom:10px}.cast-list{display:flex;flex-wrap:wrap;list-style:none;padding:0}.cast-item{align-items:center;display:flex;flex-direction:column;margin:5px;width:calc(10% - 10px)}.cast-item img{border-radius:8px;height:150px;object-fit:cover;width:100px}.cast-item p{margin:5px 0}.actor-name{color:#000}.dark-mode .cast-container{background-color:#333;color:#fff}.dark-mode .actor-name{color:#fff}
+/*# sourceMappingURL=521.bd3c5832.chunk.css.map*/
