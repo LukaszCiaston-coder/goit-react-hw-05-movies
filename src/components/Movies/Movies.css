@@ -49,8 +49,9 @@
   padding: 0;
   margin-top: 20px;
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
-  gap: 5px;
+  gap: 8px;
 }
 .movie-items {
   display: flex;
@@ -84,7 +85,7 @@
 }
 .movie-title {
   font-size: 18px;
-  color: #333;
+  color: white;
   display: block;
   overflow: hidden;
   text-overflow: ellipsis;
