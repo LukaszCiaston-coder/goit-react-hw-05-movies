@@ -1,3 +1,5 @@
+// Home.js
+
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import '../Home/Home.css';
@@ -30,7 +32,21 @@ const Home = () => {
       <ul className="home-movie-list">
         {trendingMovies.map(movie => (
           <li className="home-movie-item" key={movie.id}>
-            <Link to={`/movies/${movie.id}`}>{movie.title}</Link>
+            <Link to={`/movies/${movie.id}`} className="movie-link">
+              <div className="movie-image-container">
+                <img
+                  src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+                  alt={movie.title}
+                  className="movie-image"
+                />
+
+                <div className="movie-description">
+                  <h3 className="movie-title">{movie.title}</h3>{' '}
+                  {/* Tytuł pod obrazkiem */}
+                  <p className="movie-overview">{movie.overview}</p>
+                </div>
+              </div>
+            </Link>
           </li>
         ))}
       </ul>

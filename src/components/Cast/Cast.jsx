@@ -4,6 +4,8 @@ import '../Cast/Cast.css';
 import { useDarkMode } from '../Utils/DarkMode';
 
 const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/w200'; // Base URL for actor images
+const notFoundImageUrl =
+  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCMq4cGfAmaJAYVpXFPLY57EzVip1FTMK-ETQH1aU24VD-bYx5wJ4srHFP99zAgqXBvfQ&usqp=CAU';
 
 const Cast = () => {
   const { movieId } = useParams();
@@ -35,12 +37,27 @@ const Cast = () => {
           <li className="cast-item" key={actor.id}>
             <img
               className="actor-image"
-              src={`${IMAGE_BASE_URL}${actor.profile_path}`}
+              src={
+                actor.profile_path
+                  ? `${IMAGE_BASE_URL}${actor.profile_path}`
+                  : notFoundImageUrl // Użyj obrazu "Not Found" w przypadku braku obrazu profilowego
+              }
               alt={actor.name}
             />
             <p className="actor-name">{actor.name}</p>
           </li>
         ))}
+
+        {!cast.length && (
+          <li className="cast-item">
+            <img
+              src={notFoundImageUrl}
+              alt="Not Found"
+              className="actor-image"
+            />
+            <p className="actor-name">Not Found</p>
+          </li>
+        )}
       </ul>
       <Link to={`/movies/${movieId}`} className="btn">
         Back to Movie Details

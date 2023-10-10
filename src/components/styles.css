@@ -1,3 +1,16 @@
+body,
+html {
+  margin: 0;
+  padding: 0;
+  background-color: #fff; /* Domyślne tło strony */
+  transition: background-color 0.3s ease-in-out; /* Dodaj animację zmiany tła */
+}
+
+.dark-mode body,
+.dark-mode html {
+  background-color: #222; /* Tło strony w trybie ciemnym */
+}
+
 #darkModeToggle {
   margin: 20px;
 }
@@ -63,7 +76,7 @@ nav {
   align-items: center;
   height: 120px;
   max-width: 100hv;
-  background: gray;
+  background: #222;
 }
 .menu {
   list-style: none;

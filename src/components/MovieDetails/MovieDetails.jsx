@@ -4,6 +4,8 @@ import '../MovieDetails/MovieDetails.css';
 import { useDarkMode } from '../Utils/DarkMode';
 
 const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/w500';
+const notFoundImageUrl =
+  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCMq4cGfAmaJAYVpXFPLY57EzVip1FTMK-ETQH1aU24VD-bYx5wJ4srHFP99zAgqXBvfQ&usqp=CAU';
 
 const MovieDetails = () => {
   const { movieId } = useParams();
@@ -42,44 +44,53 @@ const MovieDetails = () => {
     fetchMovieTrailers();
   }, [movieId]);
 
+  const handleTrailerClick = () => {
+    if (trailers.length > 0) {
+      const trailerKey = trailers[0]?.key;
+      window.open(`https://www.youtube.com/watch?v=${trailerKey}`, '_blank');
+    }
+  };
+
   return (
     <div className={`movie-container ${darkMode ? 'dark-mode' : ''}`}>
       {movieDetails ? (
         <div>
-          <h2 className="movie-title">{movieDetails.title}</h2>
-          <img
-            className="movie-image"
-            src={IMAGE_BASE_URL + movieDetails.poster_path}
-            alt={movieDetails.title}
-          />
-          <p className="movie-overview">{movieDetails.overview}</p>
-          {trailers.length > 0 ? (
-            <div>
-              <h3>Trailers:</h3>
-              <ul className="trailer-list">
-                {trailers.map(trailer => (
-                  <li key={trailer.id} className="trailer-item">
-                    <a
-                      className="trailer-link"
-                      href={`https://www.youtube.com/watch?v=${trailer.key}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      {trailer.name}
-                    </a>
-                  </li>
-                ))}
-              </ul>
+          <div className="movie-details-container">
+            <div className="image-container">
+              <img
+                className="movie-details-image"
+                src={
+                  movieDetails.poster_path
+                    ? IMAGE_BASE_URL + movieDetails.poster_path
+                    : notFoundImageUrl // Użyj obrazu "Not Found" w przypadku braku obrazu
+                }
+                alt={movieDetails.title}
+                onClick={handleTrailerClick}
+                style={{ cursor: 'pointer' }}
+              />
+              {trailers.length > 0 && (
+                <div className="trailer-indicator">Trailer Available</div>
+              )}
             </div>
-          ) : (
-            <p>No trailers available.</p>
-          )}
-          <Link to={`/movies/${movieId}/cast`} className="btn">
-            Cast
-          </Link>
-          <Link to={`/movies/${movieId}/reviews`} className="btn">
-            Reviews
-          </Link>
+            <div className="movie-details">
+              <h2 className="movie-title">{movieDetails.title}</h2>
+              <p className="movie-genre">
+                {movieDetails.genres.map(genre => genre.name).join(', ')}
+              </p>
+              <p className="movie-release">
+                Release Date: {movieDetails.release_date}
+              </p>
+              <p className="movie-overview">{movieDetails.overview}</p>
+              <div className="buttons">
+                <Link to={`/movies/${movieId}/cast`} className="btn">
+                  Cast
+                </Link>
+                <Link to={`/movies/${movieId}/reviews`} className="btn">
+                  Reviews
+                </Link>
+              </div>
+            </div>
+          </div>
         </div>
       ) : (
         <div>Loading...</div>

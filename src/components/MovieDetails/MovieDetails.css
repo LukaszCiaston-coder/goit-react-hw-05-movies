@@ -1,22 +1,54 @@
+/* MovieDetails.css */
+
 .movie-container {
   padding: 20px;
 }
 
-.movie-title {
-  font-size: 24px;
-  margin-bottom: 10px;
-  color: black;
+.movie-details-container {
+  display: flex;
+  align-items: flex-start;
 }
 
-.movie-image {
-  width: 200px;
-  height: 300px;
-  object-fit: cover;
-  margin-bottom: 10px;
+.movie-details {
+  margin-left: 20px;
+}
+
+.movie-title {
+  font-size: 24px;
+}
+
+.movie-genre {
+  font-size: 16px;
+  margin-top: 8px;
+}
+
+.movie-release {
+  font-size: 16px;
+  margin-top: 8px;
 }
 
 .movie-overview {
-  margin-bottom: 20px;
+  margin-top: 20px;
+  font-size: 16px;
+}
+
+.buttons {
+  margin-top: 20px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  text-decoration: none;
+  margin-right: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #0056b3;
 }
 
 .trailer-list {
@@ -25,59 +57,59 @@
 }
 
 .trailer-item {
-  margin-bottom: 5px;
+  margin-top: 10px;
 }
 
 .trailer-link {
   text-decoration: none;
   color: #007bff;
+  display: inline-block;
 }
-
-/* Dark mode styles */
 
 .dark-mode .movie-container {
   background-color: #222;
   color: #fff;
 }
 
-.dark-mode .movie-title {
+.dark-mode .movie-details {
   color: #fff;
 }
 
-.dark-mode .movie-image {
-  border: 1px solid #fff;
-}
-
-.dark-mode .movie-overview {
-  color: #fff;
-}
-
+.dark-mode .movie-genre,
+.dark-mode .movie-release,
+.dark-mode .movie-overview,
 .dark-mode .trailer-link {
-  color: #4db2ec;
+  color: #ccc;
 }
-.btn {
-  display: inline-block;
-  padding: 8px 16px;
-  margin-right: 10px;
+
+.dark-mode .btn {
+  background-color: #0056b3;
+}
+.image-container {
+  position: relative;
+  cursor: pointer;
+}
+
+.movie-details-image {
+  width: 300px;
+  height: 450px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease-in-out;
+  margin-bottom: 20px;
+}
+
+.trailer-indicator {
+  position: absolute;
+  top: 10px;
+  left: 10px;
   background-color: #007bff;
   color: #fff;
-  text-decoration: none;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: box-shadow 0.2s ease-in-out;
-}
-.btn:focus,
-.btn:hover {
-  box-shadow: 0 0 5px #007bff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 12px;
 }
 
-/* Style dla przycisków w trybie ciemnym */
-.dark-mode .btn {
-  background-color: #b65a04;
-  color: white;
-}
-.dark-mode .btn:focus,
-.dark-mode .btn:hover {
-  box-shadow: 0 0 5px #b65a04;
+.movie-image:hover {
+  transform: scale(1.1);
 }

@@ -18,10 +18,10 @@ export const App = () => {
         <nav>
           <ul className="menu">
             <li>
-              <Link to="/">Trending Movies Today</Link>
+              <Link to="/">HOME</Link>
             </li>
             <li>
-              <Link to="/movies">Search Movies</Link>
+              <Link to="/movies">MOVIES</Link>
             </li>
           </ul>
           <button id="darkModeToggle" onClick={toggleDarkMode}></button>
