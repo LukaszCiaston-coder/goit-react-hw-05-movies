@@ -2,7 +2,7 @@
   padding: 20px;
   background-color: white;
   color: black;
-  height: 100vh;
+  height: 2000px;
   display: flex;
   flex-direction: column;
   align-items: center; /* Przesunięcie na środek wertykalnie */
@@ -35,7 +35,36 @@
 .movies-container button:hover {
   box-shadow: 0 0 5px #007bff;
 }
+.genre-buttons {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 10px 0;
+}
 
+.genre-button {
+  margin: 5px;
+  padding: 5px 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.genre-button:focus,
+.genre-button:hover {
+  background-color: #0056b3;
+}
+
+.dark-mode .genre-button {
+  background-color: #b65a04;
+}
+
+.dark-mode .genre-button:focus,
+.dark-mode .genre-button:hover {
+  background-color: #8b4e02;
+}
 .dark-mode .movies-container {
   background-color: #333;
   color: #fff;
