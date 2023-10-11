@@ -7,7 +7,7 @@
 .home-title {
   font-size: 24px;
   margin-bottom: 20px;
-  color: #333; /* Kolor tytułu */
+  color: #333;
 }
 
 .home-movie-list {
@@ -22,17 +22,18 @@
   width: calc(33.33% - 20px);
   margin: 10px 0;
   background-color: #f5f5f5;
+  color: #333;
   border-radius: 5px;
   padding: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   position: relative;
-  overflow: hidden; /* Ukryj opis filmu */
+  overflow: hidden;
   transition: transform 0.3s ease-in-out;
 }
 
 .movie-link {
   text-decoration: none;
-  color: #333; /* Kolor tekstu linku */
+  color: #333;
 }
 
 .movie-image-container {
@@ -56,24 +57,24 @@
   padding: 10px;
   border-radius: 5px;
   opacity: 0;
-  transform: translateY(100%); /* Ukryj opis pod obrazkiem */
+  transform: translateY(100%);
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 .home-movie-item:hover .movie-description {
   opacity: 1;
-  transform: translateY(0); /* Wyświetl opis po najechaniu myszką */
+  transform: translateY(0);
 }
 
 .home-movie-item:hover .movie-image {
-  transform: scale(1.1); /* Powiększ obrazek po najechaniu myszką */
+  transform: scale(1.1);
 }
 
 .movie-title {
   font-size: 16px;
   margin-bottom: 5px;
   font-weight: bold;
-  color: #0056b3; /* Kolor tytułu nad obrazkiem */
+  color: #0056b3;
 }
 
 .movie-overview {
@@ -103,21 +104,21 @@
 
 @media (max-width: 680px) {
   .home-movie-item {
-    width: 100%; /* 1 zdjęcie na ekranie */
+    width: 100%;
     margin: 10px 0;
   }
 }
 
 @media (min-width: 681px) and (max-width: 1200px) {
   .home-movie-item {
-    width: calc(50% - 30px); /* 2 zdjęcia na ekranie (tablet) */
+    width: calc(50% - 30px);
     margin: 10px 0;
   }
 }
 
 @media (min-width: 1201px) {
   .home-movie-item {
-    width: calc(25% - 30px); /* 4 zdjęcia na ekranie (desktop) */
+    width: calc(25% - 30px);
     margin: 10px 0;
   }
 }

@@ -1,6 +1,4 @@
-// Home.js
-
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import '../Home/Home.css';
 import { useDarkMode } from '../Utils/DarkMode';
@@ -42,7 +40,6 @@ const Home = () => {
 
                 <div className="movie-description">
                   <h3 className="movie-title">{movie.title}</h3>{' '}
-                  {/* Tytuł pod obrazkiem */}
                   <p className="movie-overview">{movie.overview}</p>
                 </div>
               </div>
