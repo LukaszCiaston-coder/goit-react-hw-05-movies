@@ -1,117 +1,100 @@
+/* Movies.css */
+
 .movies-container {
+  font-family: Arial, sans-serif;
   padding: 20px;
-  background-color: white;
-  color: black;
-  height: 2000px;
-  display: flex;
-  flex-direction: column;
-  align-items: center; /* Przesunięcie na środek wertykalnie */
-  text-align: center; /* Wyśrodkowanie tekstu */
-  position: relative; /* Dodaj pozycję względną */
+  background-color: #f2f2f2;
+  min-height: 500px;
 }
 
-.movies-container input[type='text'] {
-  padding: 8px;
-  font-size: 16px;
-  border: none;
-  border-bottom: 1px solid blue;
-  background-color: transparent;
-  color: black;
-  margin-bottom: 10px; /* Dodanie odstępu między input a button */
-  position: relative; /* Dodaj pozycję względną */
-}
-
-.movies-container button {
-  padding: 8px 16px;
-  font-size: 16px;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
+input[type='text'] {
+  min-width: 200px;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
   border-radius: 5px;
-  cursor: pointer;
 }
 
-.movies-container button:focus,
-.movies-container button:hover {
-  box-shadow: 0 0 5px #007bff;
-}
 .genre-buttons {
+  margin-top: 20px;
   display: flex;
-  justify-content: center;
   flex-wrap: wrap;
-  margin: 10px 0;
+  justify-content: center;
 }
 
-.genre-button {
-  margin: 5px;
-  padding: 5px 10px;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.genre-button:focus,
 .genre-button:hover {
   background-color: #0056b3;
 }
 
-.dark-mode .genre-button {
-  background-color: #b65a04;
-}
-
-.dark-mode .genre-button:focus,
-.dark-mode .genre-button:hover {
-  background-color: #8b4e02;
-}
-.dark-mode .movies-container {
-  background-color: #333;
-  color: #fff;
-}
-
-.dark-mode .movies-container input[type='text'] {
-  background-color: #333;
-  color: #fff;
-}
-
-.dark-mode .movies-container button {
-  background-color: #b65a04;
-  color: white;
-}
-
-.dark-mode .movies-container button:focus,
-.dark-mode .movies-container button:hover {
-  box-shadow: 0 0 5px #b65a04;
-}
-
 .movies-list {
   list-style: none;
-  padding: 0;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-around;
+  padding: 10px;
 }
 
 .movie-items {
-  margin: 5px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   text-decoration: none;
+  color: #333;
 }
 
 .movie-thumbnail {
   width: 200px;
-  height: 350px;
+  height: 300px;
   object-fit: cover;
-  border-radius: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
 
 .movies-title {
-  color: black;
+  display: block;
+  margin-top: 5px;
+  font-size: 14px;
+  text-align: center;
 }
 
-.dark-mode .movies-title {
-  color: white;
+/* Paginacja */
+.pagination {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  margin-top: 20px;
+  padding: 0;
+}
+
+.pagination li {
+  margin: 5px;
+  padding: 5px 10px;
+  background-color: #007bff;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.pagination li.active {
+  background-color: #0056b3;
+}
+/* DarkMode.css */
+.dark-mode .pagination li {
+  background-color: #444;
+  color: #fff;
+}
+
+.dark-mode .movies-title,
+.dark-mode .movies-container {
+  background-color: #222;
+  color: #fff;
+}
+
+/* Dodaj style dla elementów w trybie ciemnym */
+.dark-mode input[type='text'] {
+  background-color: #222;
+  color: #fff;
+  border: 1px solid #444;
+}
+
+.dark-mode .pagination li.active {
+  background-color: #007bff;
+  box-shadow: 0 0 5px #007bff;
 }

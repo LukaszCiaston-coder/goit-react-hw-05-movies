@@ -2,6 +2,7 @@
 
 .movie-container {
   padding: 20px;
+  min-height: 450px;
 }
 
 .movie-details-container {
@@ -82,9 +83,6 @@
   color: #ccc;
 }
 
-.dark-mode .btn {
-  background-color: #0056b3;
-}
 .image-container {
   position: relative;
   cursor: pointer;

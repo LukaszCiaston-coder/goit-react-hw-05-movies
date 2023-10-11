@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import ReactPaginate from 'react-paginate';
 import '../Movies/Movies.css';
 import { useDarkMode } from '../Utils/DarkMode';
 
@@ -10,10 +11,11 @@ const Movies = () => {
   const [searchKeyword, setSearchKeyword] = useState('');
   const [searchResults, setSearchResults] = useState([]);
   const [genres, setGenres] = useState([]);
+  const [currentPage, setCurrentPage] = useState(0);
+  const resultsPerPage = 18;
   const { darkMode } = useDarkMode();
 
   useEffect(() => {
-    // Pobierz listę dostępnych gatunków z API
     const fetchGenres = async () => {
       try {
         const apiKey = '9a72da818298f390a1dbda79726b9d32';
@@ -43,16 +45,7 @@ const Movies = () => {
       const data = await response.json();
       console.log('Fetched data:', data);
 
-      const resultsWithImages =
-        data.results.length > 0
-          ? data.results
-          : [
-              {
-                poster_path: null,
-                title: 'Not Found',
-                id: 'not-found',
-              },
-            ];
+      const resultsWithImages = data.results || [];
 
       setSearchResults(resultsWithImages);
     } catch (error) {
@@ -75,22 +68,20 @@ const Movies = () => {
       );
       const data = await response.json();
 
-      const resultsWithImages =
-        data.results.length > 0
-          ? data.results
-          : [
-              {
-                poster_path: null,
-                title: 'Not Found',
-                id: 'not-found',
-              },
-            ];
+      const resultsWithImages = data.results || [];
 
       setSearchResults(resultsWithImages);
     } catch (error) {
       console.error('Error while fetching data:', error);
     }
   };
+
+  const indexOfLastResult = (currentPage + 1) * resultsPerPage;
+  const indexOfFirstResult = currentPage * resultsPerPage;
+  const currentResults = searchResults.slice(
+    indexOfFirstResult,
+    indexOfLastResult
+  );
 
   return (
     <div className={`movies-container ${darkMode ? 'dark-mode' : ''}`}>
@@ -101,15 +92,16 @@ const Movies = () => {
         value={searchKeyword}
         onChange={handleSearchInputChange}
       />
-      <button onClick={handleSearch}>Search</button>
+      <button className="btn" onClick={handleSearch}>
+        Search
+      </button>
 
-      {/* Przyciski gatunków */}
-      <div className="genre-buttons">
+      <div className="genre-buttons ">
         {genres.map(genre => (
           <button
             key={genre.id}
             onClick={() => handleGenreClick(genre.id)}
-            className="genre-button"
+            className="genre-button btn"
           >
             {genre.name}
           </button>
@@ -117,7 +109,7 @@ const Movies = () => {
       </div>
 
       <ul className="movies-list">
-        {searchResults.map(movie => (
+        {currentResults.map(movie => (
           <li key={movie.id}>
             <Link className="movie-items" to={`/movies/${movie.id}`}>
               {movie.poster_path ? (
@@ -140,6 +132,16 @@ const Movies = () => {
           </li>
         ))}
       </ul>
+
+      <ReactPaginate
+        pageCount={Math.ceil(searchResults.length / resultsPerPage)}
+        pageRangeDisplayed={5}
+        marginPagesDisplayed={8}
+        onPageChange={data => setCurrentPage(data.selected)}
+        containerClassName={'pagination'}
+        subContainerClassName={'pages pagination'}
+        activeClassName={'active'}
+      />
     </div>
   );
 };
