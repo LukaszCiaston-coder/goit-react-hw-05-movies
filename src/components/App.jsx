@@ -2,6 +2,7 @@ import React, { Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import './styles.css';
 import { useDarkMode } from './Utils/DarkMode';
+import PopularMoviesCarousel from './Carousel/Carousel';
 
 const Home = React.lazy(() => import('./Home/Home'));
 const Movies = React.lazy(() => import('./Movies/Movies'));
@@ -24,6 +25,7 @@ export const App = () => {
               <Link to="/movies">MOVIES</Link>
             </li>
           </ul>
+          <PopularMoviesCarousel />
           <button id="darkModeToggle" onClick={toggleDarkMode}></button>
         </nav>
         <Suspense fallback={<div className="loading">Loading...</div>}>

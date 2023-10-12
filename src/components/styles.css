@@ -74,8 +74,9 @@ html {
 nav {
   display: flex;
   align-items: center;
-  height: 120px;
-  max-width: 100hv;
+
+  height: 250px;
+
   background: #222;
 }
 .menu {
@@ -130,13 +131,16 @@ p {
 }
 .btn:focus,
 .btn:hover {
-  box-shadow: 0 0 5px #007bff;
+  box-shadow: 0 0 5px #444;
+  background-color: #444;
 }
 
 .dark-mode .btn {
   background-color: #444;
   color: #fff;
 }
+.dark-mode .btn:focus,
 .dark-mode .btn:hover {
+  box-shadow: 0 0 5px #007bff;
   background-color: #007bff;
 }

@@ -80,7 +80,10 @@ input[type='text'] {
   background-color: #444;
   color: #fff;
 }
-
+.dark-mode .pagination li.active {
+  background-color: #007bff;
+  box-shadow: 0 0 5px #007bff;
+}
 .dark-mode .movies-title,
 .dark-mode .movies-container {
   background-color: #222;
@@ -92,9 +95,4 @@ input[type='text'] {
   background-color: #222;
   color: #fff;
   border: 1px solid #444;
-}
-
-.dark-mode .pagination li.active {
-  background-color: #007bff;
-  box-shadow: 0 0 5px #007bff;
 }

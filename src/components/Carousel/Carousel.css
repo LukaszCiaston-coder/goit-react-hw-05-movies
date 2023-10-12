@@ -1,0 +1,40 @@
+.popular-movies-carousel {
+  width: 100px;
+  height: 100px;
+  margin-bottom: 90px;
+  margin-left: 60px;
+  display: none;
+}
+@media (min-width: 681px) and (max-width: 1024px) {
+  .popular-movies-carousel {
+    width: 400px;
+    height: 100px;
+    margin-bottom: 90px;
+    margin-left: 60px;
+    display: block;
+  }
+}
+
+@media (min-width: 1024px) {
+  .popular-movies-carousel {
+    width: 800px;
+    height: 100px;
+    margin-bottom: 90px;
+    margin-left: 150px;
+    margin-right: 150px;
+    display: block;
+  }
+}
+.popular-movie-item {
+  width: 133px;
+}
+
+/* Style dla obrazka filmu w elemencie karuzeli */
+img {
+  width: 100%; /* Dostosuj szerokość obrazka do szerokości elementu */
+  height: auto; /* Zachowanie proporcji obrazka */
+  border-radius: 4px;
+}
+.react-multi-carousel-dot-list {
+  display: none;
+}

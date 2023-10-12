@@ -36,21 +36,29 @@ const Movies = () => {
     setSearchKeyword(event.target.value);
   };
 
-  const handleSearch = async () => {
-    try {
-      const apiKey = '9a72da818298f390a1dbda79726b9d32';
-      const response = await fetch(
-        `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${searchKeyword}`
-      );
-      const data = await response.json();
-      console.log('Fetched data:', data);
+  const fetchAllResults = async () => {
+    const apiKey = '9a72da818298f390a1dbda79726b9d32';
+    const totalResults = 500; // Zakładam, że API ma 500 wyników
+    const totalPages = Math.ceil(totalResults / resultsPerPage);
+    const allResults = [];
 
+    for (let page = 1; page <= totalPages; page++) {
+      const response = await fetch(
+        `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${searchKeyword}&page=${page}&per_page=${resultsPerPage}`
+      );
+
+      const data = await response.json();
       const resultsWithImages = data.results || [];
 
-      setSearchResults(resultsWithImages);
-    } catch (error) {
-      console.error('Error while fetching data:', error);
+      allResults.push(...resultsWithImages);
     }
+
+    setSearchResults(allResults);
+  };
+
+  const handleSearch = async () => {
+    // Wywołaj funkcję fetchAllResults
+    await fetchAllResults();
   };
 
   const truncateTitle = (title, maxLength) => {
@@ -59,23 +67,30 @@ const Movies = () => {
     }
     return title;
   };
-
   const handleGenreClick = async genreId => {
     try {
       const apiKey = '9a72da818298f390a1dbda79726b9d32';
-      const response = await fetch(
-        `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&with_genres=${genreId}`
-      );
-      const data = await response.json();
+      const totalResults = 500;
+      const totalPages = Math.ceil(totalResults / resultsPerPage);
+      const allResults = [];
 
-      const resultsWithImages = data.results || [];
+      for (let page = 1; page <= totalPages; page++) {
+        const response = await fetch(
+          `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&with_genres=${genreId}&page=${page}&per_page=${resultsPerPage}`
+        );
+        const data = await response.json();
+        const resultsWithImages = data.results || [];
+        allResults.push(...resultsWithImages);
+      }
 
-      setSearchResults(resultsWithImages);
+      console.log('Fetched data for genreId:', genreId);
+
+      // Ustaw wszystkie wyniki w stanie komponentu
+      setSearchResults(allResults);
     } catch (error) {
       console.error('Error while fetching data:', error);
     }
   };
-
   const indexOfLastResult = (currentPage + 1) * resultsPerPage;
   const indexOfFirstResult = currentPage * resultsPerPage;
   const currentResults = searchResults.slice(
@@ -96,7 +111,7 @@ const Movies = () => {
         Search
       </button>
 
-      <div className="genre-buttons ">
+      <div className="genre-buttons">
         {genres.map(genre => (
           <button
             key={genre.id}
@@ -135,8 +150,8 @@ const Movies = () => {
 
       <ReactPaginate
         pageCount={Math.ceil(searchResults.length / resultsPerPage)}
-        pageRangeDisplayed={5}
-        marginPagesDisplayed={8}
+        pageRangeDisplayed={3}
+        marginPagesDisplayed={1}
         onPageChange={data => setCurrentPage(data.selected)}
         containerClassName={'pagination'}
         subContainerClassName={'pages pagination'}
