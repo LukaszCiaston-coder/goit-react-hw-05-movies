@@ -148,8 +148,7 @@ const Movies = () => {
         ))}
       </ul>
 
-      {/* Paginacja dla ekranów o szerokości większej niż 680px */}
-      {window.innerWidth > 680 && (
+      {window.innerWidth > 760 && (
         <ReactPaginate
           pageCount={Math.ceil(searchResults.length / resultsPerPage)}
           pageRangeDisplayed={3}
@@ -161,8 +160,7 @@ const Movies = () => {
         />
       )}
 
-      {/* Paginacja dla ekranów o szerokości mniejszej lub równej 680px */}
-      {window.innerWidth <= 680 && (
+      {window.innerWidth <= 760 && (
         <ReactPaginate
           pageCount={Math.ceil(searchResults.length / resultsPerPage)}
           pageRangeDisplayed={0} // Zmień to na 0, aby ukryć numery stron pośrodku
