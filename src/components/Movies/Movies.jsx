@@ -148,17 +148,32 @@ const Movies = () => {
         ))}
       </ul>
 
-      <ReactPaginate
-        pageCount={Math.ceil(searchResults.length / resultsPerPage)}
-        pageRangeDisplayed={3}
-        marginPagesDisplayed={1}
-        onPageChange={data => setCurrentPage(data.selected)}
-        containerClassName={'pagination'}
-        subContainerClassName={'pages pagination'}
-        activeClassName={'active'}
-      />
+      {/* Paginacja dla ekranów o szerokości większej niż 680px */}
+      {window.innerWidth > 680 && (
+        <ReactPaginate
+          pageCount={Math.ceil(searchResults.length / resultsPerPage)}
+          pageRangeDisplayed={3}
+          marginPagesDisplayed={1}
+          onPageChange={data => setCurrentPage(data.selected)}
+          containerClassName={'pagination'}
+          subContainerClassName={'pages pagination'}
+          activeClassName={'active'}
+        />
+      )}
+
+      {/* Paginacja dla ekranów o szerokości mniejszej lub równej 680px */}
+      {window.innerWidth <= 680 && (
+        <ReactPaginate
+          pageCount={Math.ceil(searchResults.length / resultsPerPage)}
+          pageRangeDisplayed={0} // Zmień to na 0, aby ukryć numery stron pośrodku
+          marginPagesDisplayed={1}
+          onPageChange={data => setCurrentPage(data.selected)}
+          containerClassName={'pagination'}
+          subContainerClassName={'pages pagination'}
+          activeClassName={'active'}
+        />
+      )}
     </div>
   );
 };
-
 export default Movies;
