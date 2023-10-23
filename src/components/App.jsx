@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import './styles.css';
 import { useDarkMode } from './Utils/DarkMode';
 import PopularMoviesCarousel from './Carousel/Carousel';
+import FooterInfo from './FooterInfo/FooterInfo';
 
 const Home = React.lazy(() => import('./Home/Home'));
 const Movies = React.lazy(() => import('./Movies/Movies'));
@@ -38,6 +39,7 @@ export const App = () => {
             <Route path="*" element={<Home />} />
           </Routes>
         </Suspense>
+        <FooterInfo />
       </div>
     </Router>
   );
