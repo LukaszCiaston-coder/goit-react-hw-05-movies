@@ -7,7 +7,19 @@
 
 .movie-details-container {
   display: flex;
-  align-items: flex-start;
+}
+@media (max-width: 680px) {
+  .movie-details-container {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media (min-width: 681px) and (max-width: 1200px) {
+  .movie-details-container {
+    flex-direction: row;
+    align-items: flex-start;
+  }
 }
 
 .movie-details {
