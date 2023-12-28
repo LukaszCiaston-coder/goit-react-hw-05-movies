@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import '../Cast/Cast.css';
 import { useDarkMode } from '../Utils/DarkMode';
 
-const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/w200'; // Base URL for actor images
+const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/w200';
 const notFoundImageUrl =
   'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCMq4cGfAmaJAYVpXFPLY57EzVip1FTMK-ETQH1aU24VD-bYx5wJ4srHFP99zAgqXBvfQ&usqp=CAU';
 
@@ -15,7 +15,7 @@ const Cast = () => {
   useEffect(() => {
     const fetchMovieCast = async () => {
       try {
-        const apiKey = '9a72da818298f390a1dbda79726b9d32'; // Klucz API themoviedb.org
+        const apiKey = '9a72da818298f390a1dbda79726b9d32';
         const response = await fetch(
           `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${apiKey}`
         );
@@ -40,7 +40,7 @@ const Cast = () => {
               src={
                 actor.profile_path
                   ? `${IMAGE_BASE_URL}${actor.profile_path}`
-                  : notFoundImageUrl // Użyj obrazu "Not Found" w przypadku braku obrazu profilowego
+                  : notFoundImageUrl
               }
               alt={actor.name}
             />

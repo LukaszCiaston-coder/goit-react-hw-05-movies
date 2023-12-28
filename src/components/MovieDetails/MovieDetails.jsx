@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import '../MovieDetails/MovieDetails.css';
 import { useDarkMode } from '../Utils/DarkMode';
@@ -62,7 +62,7 @@ const MovieDetails = () => {
                 src={
                   movieDetails.poster_path
                     ? IMAGE_BASE_URL + movieDetails.poster_path
-                    : notFoundImageUrl // Użyj obrazu "Not Found" w przypadku braku obrazu
+                    : notFoundImageUrl
                 }
                 alt={movieDetails.title}
                 onClick={handleTrailerClick}

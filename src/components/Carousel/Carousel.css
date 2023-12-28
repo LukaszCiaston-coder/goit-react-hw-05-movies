@@ -29,10 +29,9 @@
   width: 133px;
 }
 
-/* Style dla obrazka filmu w elemencie karuzeli */
 img {
-  width: 100%; /* Dostosuj szerokość obrazka do szerokości elementu */
-  height: auto; /* Zachowanie proporcji obrazka */
+  width: 100%;
+  height: auto;
   border-radius: 4px;
 }
 .react-multi-carousel-dot-list {

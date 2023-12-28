@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import ReactPaginate from 'react-paginate';
 import '../Movies/Movies.css';
 import { useDarkMode } from '../Utils/DarkMode';
+import Loader from '../Loader/Loader';
 
 const notFoundImageUrl =
   'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCMq4cGfAmaJAYVpXFPLY57EzVip1FTMK-ETQH1aU24VD-bYx5wJ4srHFP99zAgqXBvfQ&usqp=CAU';
@@ -12,6 +13,7 @@ const Movies = () => {
   const [searchResults, setSearchResults] = useState([]);
   const [genres, setGenres] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
   const resultsPerPage = 18;
   const { darkMode } = useDarkMode();
 
@@ -37,8 +39,10 @@ const Movies = () => {
   };
 
   const fetchAllResults = async () => {
+    setIsLoading(true);
+
     const apiKey = '9a72da818298f390a1dbda79726b9d32';
-    const totalResults = 500; // Zakładam, że API ma 500 wyników
+    const totalResults = 500;
     const totalPages = Math.ceil(totalResults / resultsPerPage);
     const allResults = [];
 
@@ -54,10 +58,12 @@ const Movies = () => {
     }
 
     setSearchResults(allResults);
+    setIsLoading(false);
   };
 
-  const handleSearch = async () => {
-    // Wywołaj funkcję fetchAllResults
+  const handleSearch = async e => {
+    e.preventDefault();
+    console.log('Handling search...');
     await fetchAllResults();
   };
 
@@ -67,6 +73,7 @@ const Movies = () => {
     }
     return title;
   };
+
   const handleGenreClick = async genreId => {
     try {
       const apiKey = '9a72da818298f390a1dbda79726b9d32';
@@ -85,18 +92,20 @@ const Movies = () => {
 
       console.log('Fetched data for genreId:', genreId);
 
-      // Ustaw wszystkie wyniki w stanie komponentu
       setSearchResults(allResults);
     } catch (error) {
       console.error('Error while fetching data:', error);
     }
   };
+
   const indexOfLastResult = (currentPage + 1) * resultsPerPage;
   const indexOfFirstResult = currentPage * resultsPerPage;
   const currentResults = searchResults.slice(
     indexOfFirstResult,
     indexOfLastResult
   );
+
+  console.log('Rendering Movies component...', isLoading, currentResults);
 
   return (
     <div className={`movies-container ${darkMode ? 'dark-mode' : ''}`}>
@@ -122,6 +131,8 @@ const Movies = () => {
           </button>
         ))}
       </div>
+
+      {isLoading && <Loader />}
 
       <ul className="movies-list">
         {currentResults.map(movie => (
@@ -163,7 +174,7 @@ const Movies = () => {
       {window.innerWidth <= 760 && (
         <ReactPaginate
           pageCount={Math.ceil(searchResults.length / resultsPerPage)}
-          pageRangeDisplayed={0} // Zmień to na 0, aby ukryć numery stron pośrodku
+          pageRangeDisplayed={0}
           marginPagesDisplayed={1}
           onPageChange={data => setCurrentPage(data.selected)}
           containerClassName={'pagination'}
@@ -174,4 +185,5 @@ const Movies = () => {
     </div>
   );
 };
+
 export default Movies;

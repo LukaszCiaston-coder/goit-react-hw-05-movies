@@ -101,6 +101,46 @@
 .dark-mode .home-movie-item a {
   color: #fff;
 }
+.pagination {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  margin-top: 20px;
+  padding: 0;
+}
+
+.pagination li {
+  margin: 5px;
+  padding: 5px 10px;
+  background-color: #007bff;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.pagination li.active {
+  background-color: #0056b3;
+}
+/* DarkMode.css */
+.dark-mode .pagination li {
+  background-color: #444;
+  color: #fff;
+}
+.dark-mode .pagination li.active {
+  background-color: #007bff;
+  box-shadow: 0 0 5px #007bff;
+}
+.dark-mode .movies-title,
+.dark-mode .movies-container {
+  background-color: #222;
+  color: #fff;
+}
+
+.dark-mode input[type='text'] {
+  background-color: #222;
+  color: #fff;
+  border: 1px solid #444;
+}
 
 @media (max-width: 680px) {
   .home-movie-item {

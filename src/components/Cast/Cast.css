@@ -52,8 +52,6 @@
   color: black;
 }
 
-/* Style dla dark mode */
-
 .dark-mode .cast-container {
   background-color: #222;
   color: #fff;

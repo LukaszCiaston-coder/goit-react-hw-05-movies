@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import '../Carousel/Carousel.css';
+import { Link } from 'react-router-dom';
 
 const apiKey = '9a72da818298f390a1dbda79726b9d32';
 const popularMoviesUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&sort_by=popularity.desc`;
@@ -14,7 +15,7 @@ const PopularMoviesCarousel = () => {
       try {
         const response = await fetch(popularMoviesUrl);
         const data = await response.json();
-        console.log('Pobrane dane o popularnych filmach:', data); // Dodaj ten log
+        console.log('Pobrane dane o popularnych filmach:', data);
         setPopularMovies(data.results);
       } catch (error) {
         console.error('Błąd pobierania danych o popularnych filmach: ', error);
@@ -24,7 +25,9 @@ const PopularMoviesCarousel = () => {
     fetchPopularMovies();
   }, []);
 
-  console.log('Popular Movies:', popularMovies); // Dodaj ten log
+  const handleMovieClick = movieId => {
+    console.log('Clicked movie with ID:', movieId);
+  };
 
   return (
     <div className="popular-movies-carousel">
@@ -52,32 +55,38 @@ const PopularMoviesCarousel = () => {
               max: 3000,
               min: 1024,
             },
-            items: 6, // Wyświetlane 4 filmy naraz
+            items: 6,
           },
           tablet: {
             breakpoint: {
               max: 1024,
               min: 464,
             },
-            items: 3, // Wyświetlane 2 filmy naraz
+            items: 3,
           },
           mobile: {
             breakpoint: {
               max: 464,
               min: 0,
             },
-            items: 1, // Wyświetlany 1 film naraz
+            items: 1,
           },
         }}
         showDots
         sliderClass=""
       >
         {popularMovies.map(movie => (
-          <div className="popular-movie-item" key={movie.id}>
-            <img
-              src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-              alt={movie.title}
-            />
+          <div
+            className="popular-movie-item"
+            key={movie.id}
+            onClick={() => handleMovieClick(movie.id)}
+          >
+            <Link to={`/movies/${movie.id}`}>
+              <img
+                src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                alt={movie.title}
+              />
+            </Link>
           </div>
         ))}
       </Carousel>
